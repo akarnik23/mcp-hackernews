@@ -6,6 +6,7 @@ A FastMCP server that provides access to Hacker News data.
 
 import asyncio
 import json
+import os
 from typing import Any, Dict, List, Optional
 import httpx
 from fastmcp import FastMCP
