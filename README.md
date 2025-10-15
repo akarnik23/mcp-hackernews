@@ -21,17 +21,22 @@ python src/server.py
 
 ## 🚢 Deployment
 
-### Option 1: One-Click Deploy to Render
+### Deploy to Render
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
 
-### Option 2: Manual Deployment
-
-1. Fork this repository
-2. Connect your GitHub account to Render
-3. Create a new Web Service on Render
-4. Connect your forked repository
-5. Render will automatically detect the render.yaml configuration
+**Steps:**
+1. **Fork this repository** (if you haven't already)
+2. **Connect your GitHub account to Render** (if you haven't already)
+3. **Click the "Deploy to Render" button above** or go to [render.com](https://render.com)
+4. **Create a new Web Service:**
+   - Connect your forked repository
+   - **Name**: `hackernews-mcp`
+   - **Environment**: `Python 3`
+   - **Plan**: `Free`
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `python src/server.py`
+5. **Deploy!** (No additional environment variables needed - uses public Hacker News API)
 
 Your server will be available at `https://hackernews-mcp.onrender.com/mcp`
 
