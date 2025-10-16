@@ -48,6 +48,22 @@ Your server will be available at `https://hackernews-mcp.onrender.com/mcp`
 3. Give it a name like "Hacker News"
 4. Try: "Can you use the Hacker News MCP to get top stories?"
 
+## 🧩 Architecture Note (FastAPI + FastMCP Hybrid)
+
+Note: FastMCP 2.x responses didn’t work well with Poke’s client in my testing due to response format differences. The client expects simpler JSON but errors on FastMCP’s structured content with "Cannot read properties of undefined (reading 'status')". This was reproducible with Interaction’s basic FastMCP template as well.
+
+So for now, this server uses a hybrid architecture where:
+- FastAPI endpoints deliver Poke‑compatible JSON
+- `@mcp.tool()` functions exist as future‑ready wrappers
+- Shared logic lives in `_http` functions to avoid duplication
+
+To try pure FastMCP later:
+1) replace the entire FastAPI main block with `mcp.run()`,
+2) optionally move each `_http` function’s logic into the corresponding `@mcp.tool()` (or keep wrappers calling `_http`), and
+3) remove FastAPI routes if no longer needed.
+
+This works with Poke today while keeping a clean migration path to pure FastMCP.
+
 ## References
 
 - Based on the Interaction MCP server template: [MCP Server Template](https://github.com/InteractionCo/mcp-server-template/tree/main)
